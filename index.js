@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
     const canvas = document.querySelector("#main");
     const context = canvas.getContext("2d");
-
+    
     //resize
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
@@ -9,8 +9,13 @@ window.addEventListener("load", () => {
 
     //variables
     let painting = false;
+    let brushSlider = document.getElementById("slider");
+    let brushWidth = brushSlider.value;
+
     function startPosition(e){
         painting = true;
+        brushSlider = updateBrush();
+        context.lineWidth = brushWidth;
         draw(e);
     }
     function finishPosition(){
@@ -20,7 +25,6 @@ window.addEventListener("load", () => {
         
     function draw(e){
         if (!painting) return;
-        context.lineWidth = 10;
         context.lineCap = "round";
         context.lineTo(e.offsetX, e.offsetY);
         context.stroke();
@@ -32,6 +36,15 @@ window.addEventListener("load", () => {
     canvas.addEventListener("mousedown", startPosition);
     canvas.addEventListener("mouseup", finishPosition);
     canvas.addEventListener("mousemove", draw);
+    
+    //brush size
+    brushSlider.addEventListener("input", function() {
+        brushWidth = this.value;
+        updateBrush();
+    });
+    function updateBrush() {
+        return brushWidth;
+    }
 });
 
 
