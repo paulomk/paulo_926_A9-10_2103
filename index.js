@@ -62,8 +62,8 @@ window.addEventListener("load", () => {
           } else if (this.id == "new"){
             console.log(this.id);
           } else{ //color section
-            console.log(this.id);
-            newColor = this.id;
+            console.log(getComputedStyle(document.getElementById(this.id)).backgroundColor);
+            newColor = getComputedStyle(document.getElementById(this.id)).backgroundColor;
           }
           updateBrushColor(newColor);
         });
