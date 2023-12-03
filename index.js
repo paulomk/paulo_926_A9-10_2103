@@ -60,9 +60,10 @@ window.addEventListener("load", () => {
             newColor = "white";
             console.log(this.id);
           } else if (this.id == "new"){
+            context.clearRect(0, 0, canvas.width, canvas.height);
             console.log(this.id);
           } else{ //color section
-            console.log(getComputedStyle(document.getElementById(this.id)).backgroundColor);
+            //console.log(getComputedStyle(document.getElementById(this.id)).backgroundColor);
             newColor = getComputedStyle(document.getElementById(this.id)).backgroundColor;
           }
           updateBrushColor(newColor);
