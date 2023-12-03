@@ -11,6 +11,7 @@ window.addEventListener("load", () => {
     let painting = false;
     let brushSlider = document.getElementById("slider");
     let brushWidth = brushSlider.value;
+    
     let colorSelect = document.querySelectorAll('.btn.btn-action')
     var brushColor = "black"; //initial color
 
@@ -29,7 +30,6 @@ window.addEventListener("load", () => {
         context.lineCap = "round";
         context.lineTo(e.offsetX, e.offsetY);
         //size
-        brushSlider = updateBrush();
         context.lineWidth = brushWidth;
         //color
         context.strokeStyle = brushColor;
@@ -52,18 +52,24 @@ window.addEventListener("load", () => {
         return brushWidth;
     }
 
-    //color
+    //color and clear
     colorSelect.forEach(function(button) {
         button.addEventListener("click", function() {
-          var newColor = this.id;
+          let newColor;
+          if(this.id == "erase"){ //set erase "color"
+            newColor = "white";
+            console.log(this.id);
+          } else if (this.id == "new"){
+            console.log(this.id);
+          } else{ //color section
+            console.log(this.id);
+            newColor = this.id;
+          }
           updateBrushColor(newColor);
         });
     });
+    //color
     function updateBrushColor(newColor) {
         brushColor = newColor;
       }
 });
-
-
-
-
